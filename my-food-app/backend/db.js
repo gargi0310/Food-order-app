@@ -15,6 +15,27 @@ const mongoDB =async() =>{
     // })
     let data = await fetched_data.find({}).toArray()
     // console.log(data);
+
+    // global.food_item = data;
+    // const foodCategory = await mongoose.connection.db.collection("foodCategory");
+    // foodCategory.find({}).toArray(function (error, catData){
+    //     if(error) console.log(error);
+    //     else{
+    //         global.food_item = data;
+    //         global.foodCategory = catData;
+    //     }
+    // })
+
+
+    const food_data = await mongoose.connection.db.collection("food_category");
+    let catData = await food_data.find({}).toArray();
+
+    if(!food_data) console.log("Error");
+    else{
+        global.food_item = data;
+        global.food_category = catData;
+    }
+    
     }
     catch(error){
         console.log(error)
