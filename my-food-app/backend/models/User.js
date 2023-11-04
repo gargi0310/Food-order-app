@@ -7,14 +7,14 @@ const UserSchema = new Schema({
         type:String,
         required:true
     },
-
     location:{
         type:String,
-        required:true
+        required:true,
     },
     email:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     password:{
         type:String,
@@ -23,7 +23,8 @@ const UserSchema = new Schema({
     date:{
         type:Date,
         default:Date.now
-    }
-});
+    },
 
-module.exports = mongoose.model('user',UserSchema)
+  });
+
+  module.exports = mongoose.model('user',UserSchema)

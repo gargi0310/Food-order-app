@@ -1,8 +1,7 @@
-import React, { useEffect, userEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Card from '../components/Card'
-import Carousal from '../components/Carousal'
 
 
 export default function Home() {
@@ -63,7 +62,7 @@ export default function Home() {
       </div></div>
       <div className='container'>
         {
-          foodCat != [] ? foodCat.map((data) => {
+          foodCat !=[] ? foodCat.map((data) => {
             return (<div className='row mb-3'>
               <div key={data._id} className='fs-3 m-3'>
                 {data.CategoryName}
@@ -75,9 +74,9 @@ export default function Home() {
                 .map(filterItems => {
                     return (
                       <div key={filterItems._id} className='m-3 col-12 col-md-6 col-lg-3'>
-                        <Card foodName={filterItems.name}
+                        <Card foodItem = {filterItems}
                           options={filterItems.options[0]}
-                          imgSrc={filterItems.img}
+                          
                         ></Card>
                       </div>
                     )
