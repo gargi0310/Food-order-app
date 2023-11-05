@@ -4,7 +4,10 @@ const Order = require('../models/Orders')
 
 router.post('/orderData', async(req, res)=>{
     let data = req.body.order_data
-    await data.splice(0, 0, {Order_data:req.body.email})
+    await data.splice(0, 0, { Order_date:req.body.order_date})
+
+    //if(email not exixting in db then create else:insert)
+    let eId = await Order.findOne({'email':req.body.email})
     console.log(eId)
     if(eId === null){
         try {
@@ -23,12 +26,21 @@ router.post('/orderData', async(req, res)=>{
     else{
         try {
             await Order.findOneAndUpdate({ email: req.body.email},
-                {$push:{order_data:data} }).then(()=>{
+                { $push:{order_data:data} }).then(()=>{
                     res.json({success:true})
                 })
         } catch (error) {
             res.send("Server Error", error.message)
         }
+    }
+})
+
+router.post('/myorderdata', async(req, res)=>{
+    try {
+        let myData = await Order.findOne({'email':req.body.email})
+        res.json({orderData: myData})
+    } catch (error) {
+        res.send("Server Error", error.message)
     }
 })
 

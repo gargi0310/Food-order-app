@@ -23,7 +23,7 @@ export default function Cart() {
     const handleCheckout = async()=>{
         let userEmail = localStorage.getItem("userEmail");
 
-        let response = await fetch("http://localhost:5000/api/auth/OrderData", {
+        let response = await fetch("http://localhost:5000/api/orderData", {
             //credentials:'include'
             // Origin:"http://localhost:3000/login",
             method:'POST',
@@ -33,12 +33,15 @@ export default function Cart() {
             body:JSON.stringify({
                 order_data:data,
                 email:userEmail,
-                Order_date:new Date().toDateString()
+                order_date:new Date().toDateString()
             })
+
+        
         });
 
 
         console.log("Order RESPONSE:", response)
+        alert('Your order has been placed');
         if(response.status === 200){
             dispatch({type:"DROP"})
         }
@@ -76,7 +79,7 @@ export default function Cart() {
             <div><h1 className='fs-5'>Total Price:{totalPrice}/-</h1></div>
            
            <div>
-            <button className='btn bg-success mt-5' onClick={handleCheckout} >Check out</button>
+            <button className='btn bg-success mt-5' onClick={handleCheckout}>Check out</button>
            </div>
         </div>
 
