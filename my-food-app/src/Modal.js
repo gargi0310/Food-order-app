@@ -22,16 +22,16 @@ const OVERLAY_STYLES = {
     zIndex:1000
 }
 
-export default function Modal({children, onClose}) {
-  return ReactDom.createPortal (
+export default function Modal({ children, onClose }) {
+
+  return ReactDom.createPortal(
     <>
-        <div style={OVERLAY_STYLES}></div>
-        <div style={MODAL_STYLES}>
-            <button className='btn btn-danger fs-4' style={{ marginLeft:"90%", marginTop:"-35%"}} onClick={onClose}>X</button>
-            {children}
-        </div>
+      <div style={OVERLAY_STYLES} />
+      <div style={MODAL_STYLES}>
+        <button className='btn bg-danger fs-6' style={{ marginLeft: "90%", marginTop: "-35px" }} onClick={onClose}> X </button>
+        {children}
+      </div>
     </>,
-    document.getElementById("cart-root")
+    document.getElementById('cart-root')
   )
 }
-

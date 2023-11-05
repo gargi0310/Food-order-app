@@ -11,9 +11,7 @@ const reducer = (state, action) => {
             let newArr = [...state]
             newArr.splice(action.index, 1)
             return newArr;
-        case "DROP":
-            let empArray = []
-            return empArray
+        
         case "UPDATE":
             let arr = [...state]
             arr.find((food, index) => {
@@ -24,6 +22,10 @@ const reducer = (state, action) => {
                 return arr
             })
             return arr
+        case "DROP":
+            let empArray = []
+            return empArray
+            
         default:
             console.log("Error in Reducer");
     }

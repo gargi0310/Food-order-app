@@ -8,10 +8,11 @@ import Cart from '../screens/Cart';
 
 export default function Navbar(props) {
 
-    const [cartView, setCartView] = useState(false)
+    const [cartView, setCartView] = useState(false);
+    let data = useCart();
     localStorage.setItem('temp', "first")
     let navigate = useNavigate();
-    
+
     const handleLogout = () => {
         localStorage.removeItem('authToken')
 
@@ -46,17 +47,21 @@ export default function Navbar(props) {
                             <div className="d-flex">
                                 <Link className="btn bg-white text-success mx-1 " to="/login">Login</Link>
                                 <Link className="btn bg-white text-success mx-1" to="/signup">Signup</Link>
-                            </div> :
+                            </div> 
+                            :
                             <div>
 
-                                <div className="btn bg-white text-success mx-2 " onClick={()=>setCartView(true)}>
+                                <div className="btn bg-white text-success mx-2 " onClick={() => { setCartView(true) }}>
                                     My cart{" "}
-                                    <Badge pill bg='danger'>2</Badge>
+                                    <Badge pill bg='danger'> {data.length} </Badge>
                                 </div>
 
-                                {cartView ? <Modal onClose={()=>setCartView(false)}> <Cart/> </Modal> : null}
+                                {cartView ? <Modal onClose={() => { setCartView(false) }}> <Cart /> </Modal> : null}
 
-                                <button onClick={handleLogout} className="btn bg-danger text-white" >Logout</button></div>}
+                                <div className="btn bg-danger text-white" onClick={handleLogout}>Logout
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </nav>

@@ -37,7 +37,8 @@ export default function Cart() {
             })
         });
 
-        console.log("JSON RESPONSE:::::", response.status)
+
+        console.log("Order RESPONSE:", response)
         if(response.status === 200){
             dispatch({type:"DROP"})
         }
@@ -67,15 +68,15 @@ export default function Cart() {
                 <td>{food.qty}</td>
                 <td>{food.size}</td>
                 <td>{food.price}</td>
-                <td ><button type="button" className="btn p-0"><img src={trash} alt='delete' onClick={()=>{dispatch({type:"REMOVE", index:index}) }} /></button> </td></tr>
+                <td ><button type="button" className="btn p-0"><img src={trash} style={{backgroundColor:"white", borderRadius:"2px"}} alt='delete' onClick={()=>{dispatch({type:"REMOVE", index:index}) }} /></button> </td></tr>
             ))}
                 </tbody>
             </table>
             
-            <div><h1 className='fs-2'>Total Price:{totalPrice}/-</h1></div>
+            <div><h1 className='fs-5'>Total Price:{totalPrice}/-</h1></div>
            
            <div>
-            <button className='btn bg-success mt-5' onClick={handleCheckout}>Check out</button>
+            <button className='btn bg-success mt-5' onClick={handleCheckout} >Check out</button>
            </div>
         </div>
 
