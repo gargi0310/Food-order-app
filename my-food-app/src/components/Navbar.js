@@ -13,6 +13,9 @@ export default function Navbar(props) {
     localStorage.setItem('temp', "first")
     let navigate = useNavigate();
 
+    let email = localStorage.getItem('userEmail');
+
+
     const handleLogout = () => {
         localStorage.removeItem('authToken')
 
@@ -38,29 +41,52 @@ export default function Navbar(props) {
                             <li className="nav-item">
                                 <Link className="nav-link fs-5 mx-3 active" aria-current="page" to="/">Home</Link>  {/* index.css - nav-link color white */}
                             </li>
+
+                            
                             {(localStorage.getItem("authToken")) ?
+
                                 <li className="nav-item">
+
                                     <Link className="nav-link fs-5 mx-3 active" aria-current="page" to="/myorder" >My Orders</Link>  {/* index.css - nav-link color white */}
-                                </li> : ""}
+                                    
+
+                                </li>
+                                
+                                
+                                
+                                : ""}
+
+<li><div className='mx-3 mt-2 active fs-6'> Welcome,  {email}</div></li>
+
+
                         </ul>
                         {(!localStorage.getItem("authToken")) ?
                             <div className="d-flex">
                                 <Link className="btn bg-white text-success mx-1 " to="/login">Login</Link>
                                 <Link className="btn bg-white text-success mx-1" to="/signup">Signup</Link>
-                            </div> 
+                            </div>
                             :
+                            
                             <div>
-
+                                
+                                
+                                
                                 <div className="btn bg-white text-success mx-2 " onClick={() => { setCartView(true) }}>
                                     My cart{" "}
                                     <Badge pill bg='danger'> {data.length} </Badge>
                                 </div>
 
                                 {cartView ? <Modal onClose={() => { setCartView(false) }}> <Cart /> </Modal> : null}
+                                
+
 
                                 <div className="btn bg-danger text-white" onClick={handleLogout}>Logout
+                                
                                 </div>
+
+                                
                             </div>
+                           
                         }
                     </div>
                 </div>
